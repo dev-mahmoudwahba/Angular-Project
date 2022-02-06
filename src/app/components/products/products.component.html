@@ -1,3 +1,75 @@
-<h1> {{storeName}} </h1>
+<h1> {{storeName | uppercase}} </h1>
+
+<!-- dropdown -->
+
+<div  class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Dropdown button
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+        <li  *ngFor="let item of categoryList">
+            <a class="dropdown-item active" href="#"> {{item.Name}} </a>
+        </li>
+
+    </ul>
+</div>
+<!-- dropdown -->
+
 <img width="400vw" height="400vh" [src]="storeLogo" alt="">
-<h3>We offer an explicit discount of: {{discount}} </h3>
+
+<div *ngIf="discount ; then displayNone;else displayBlock"></div>
+
+<ng-template #displayBlock>
+    <h3 *ngIf="discount">We offer an explicit discount of: {{discount | percent}} </h3>
+
+</ng-template>
+
+<ng-template #displayNone>
+    <h3 *ngIf="discount">We offer an explicit discount of: {{discount | percent}} </h3>
+
+</ng-template>
+
+<br>
+
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="clientName" placeholder="Username" aria-label="Username">
+    {{clientName}}
+
+</div>
+
+
+<br>
+
+
+<!-- table -->
+
+<table *ngIf="!isPurshased" class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList">
+        <th scope="row">{{product.ID}}</th>
+        <td>{{product?.Name}}</td>
+        <td>{{product.Quantity}}</td>
+        <td>{{product.Price}}</td>
+        <td id="last-td"><img id="imgofproduct"  src="{{product.Img}}" alt=""></td>
+      </tr>
+    </tbody>
+  </table>
+<!-- table -->
+<br> <br>
+<!-- button -->
+<button (click)="onBuyClicked()" type="button" class="btn btn-outline-primary ms-4">Buy</button>
+
+<br>
+<div *ngIf="isPurshased" #txt>
+    Thanks for purchasing from our Store  {{clientName}} 
+</div>

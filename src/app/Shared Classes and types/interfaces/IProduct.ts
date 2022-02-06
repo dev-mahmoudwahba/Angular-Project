@@ -5,9 +5,6 @@ export interface IProduct{
     Price:number;
     Img:string;
      
-
-
-
 }
 
 
