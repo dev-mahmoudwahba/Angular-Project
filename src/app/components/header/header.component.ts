@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  public LogoHeader:string = "../"
+  public LogoHeader:string = "../../../assets/icons/hawary.png"
   constructor() { }
 
   ngOnInit(): void {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { IProduct } from '../../Shared Classes and types/interfaces/IProduct';
 import { ICategory } from '../../Shared Classes and types/interfaces/ICategory';
 import { DiscountOffers } from '../../Shared Classes and types/enums/DiscountOffers';
+import { ProductServiceService } from 'src/app/Services/product-service.service';
 
 @Component({
   selector: 'app-products',
@@ -22,39 +23,18 @@ export class ProductsComponent implements OnInit {
     this.isPurshased=!this.isPurshased;
     
    }
-
-  constructor() {
+    @Output() childEvent = new EventEmitter()
+   
+  constructor(private proService:ProductServiceService) {
     this.discount = DiscountOffers.nodiscount
     this.storeName = "Eldawlya Store"
     this.storeLogo = "../../../assets/icons/2.png"
     this.clientName = "hamasa"
     this.isPurshased = false
 
-    this.productList = [  {
-      ID: 1,
-      Name: "iphone10",
-      Quantity: 1,
-      Price: 1000,
-      Img: "../../../assets/products-img/nokia.jpg"
-    }, {
-      ID: 2,
-      Name: "TV",
-      Quantity: 2,
-      Price: 5000,
-      Img: "../../../assets/products-img/tv.jpg"
-    },
-    {
-      ID: 3,
-      Name: "watch",
-      Quantity: 2,
-      Price: 2000,
-      Img: "../../../assets/products-img/watch.jpg"
-    }
-  
-  
-  ]
-  
-  
+
+
+  this.productList = proService.getAllProducts()
     this.categoryList = [
       {
         ID: 1,
@@ -71,7 +51,9 @@ export class ProductsComponent implements OnInit {
     ]
   
   }
-
+renderValues():any{
+ return this.proService.getAllProducts()
+}
   ngOnInit(): void {
   }
 
