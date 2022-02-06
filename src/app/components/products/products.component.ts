@@ -18,12 +18,10 @@ export class ProductsComponent implements OnInit {
    categoryList: ICategory[];
    clientName: string;
    isPurshased: boolean;
-
+  show:boolean = false;
    onBuyClicked():any{
     this.isPurshased=!this.isPurshased;
-    
    }
-    @Output() childEvent = new EventEmitter()
    
   constructor(private proService:ProductServiceService) {
     this.discount = DiscountOffers.nodiscount
@@ -52,7 +50,9 @@ export class ProductsComponent implements OnInit {
   
   }
 renderValues():any{
- return this.proService.getAllProducts()
+
+  this.proService.getAllProducts()
+  this.show = !this.show
 }
   ngOnInit(): void {
   }
