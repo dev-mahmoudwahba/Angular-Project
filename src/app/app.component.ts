@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { ProductsComponent } from './components/products/products.component';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +10,5 @@ import { ProductsComponent } from './components/products/products.component';
 export class AppComponent {
   title = 'Angular-project';
   constructor() { }
-  @ViewChild (ProductsComponent) child!:ProductsComponent
-
-  displayData(){
-    this.child.renderValues();
-  }
-  
+ 
 }

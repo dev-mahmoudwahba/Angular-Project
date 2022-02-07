@@ -18,17 +18,17 @@ export class ProductsComponent implements OnInit {
    categoryList: ICategory[];
    clientName: string;
    isPurshased: boolean;
-  show:boolean = false;
+  show:boolean = true;
    onBuyClicked():any{
     this.isPurshased=!this.isPurshased;
    }
    
   constructor(private proService:ProductServiceService) {
-    this.discount = DiscountOffers.nodiscount
+    this.discount = DiscountOffers.middiscount
     this.storeName = "Eldawlya Store"
     this.storeLogo = "../../../assets/icons/2.png"
     this.clientName = "hamasa"
-    this.isPurshased = false
+    this.isPurshased = true
 
 
 
@@ -56,5 +56,9 @@ renderValues():any{
 }
   ngOnInit(): void {
   }
+  @ViewChild (ProductsComponent) child!:ProductsComponent
 
+  displayData(){
+    this.child.renderValues();
+  }
 }
