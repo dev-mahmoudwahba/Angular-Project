@@ -1,17 +1,16 @@
-
 <!-- dropdown -->
 
-<div  class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Dropdown button
-    </button>
-    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-        <li  *ngFor="let item of categoryList">
-            <a class="dropdown-item active" href="#"> {{item.Name}} </a>
-        </li>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+    aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+    <li *ngFor="let item of categoryList">
+      <a class="dropdown-item active" href="#"> {{item.Name}} </a>
+    </li>
 
-    </ul>
+  </ul>
 </div>
 <!-- dropdown -->
 
@@ -20,30 +19,38 @@
 <div *ngIf="discount ; then displayNone;else displayBlock"></div>
 
 <ng-template #displayBlock>
-    <h3 *ngIf="discount">We offer an explicit discount of: {{discount | percent }} </h3>
+  <h3 *ngIf="discount">We offer an explicit discount of: {{discount | percent }} </h3>
 
 </ng-template>
 
 <ng-template #displayNone>
-    <h3 *ngIf="discount">We offer an explicit discount of: {{discount | percent}} </h3>
+  <h3 *ngIf="discount">We offer an explicit discount of: {{discount | percent}} </h3>
 
 </ng-template>
 
 <br>
 
-  <div class="input-group mb-3">
-    <input type="text" [(ngModel)]="clientName" placeholder="Username" aria-label="Username">
-    {{clientName}}
+<div class="input-group mb-3">
+  <input type="text" [(ngModel)]="clientName" placeholder="Username" aria-label="Username">
+  {{clientName}}
 
 </div>
 
 
 <br>
 
+<button (click)="goToDicountComponent()" class="btn btn-outline-primary mx-4">Products with discount</button> || 
+<button (click)="goToWithoutDicountComponent()" class="btn btn-outline-primary mx-4"> product without discounts</button>
+
+
+
+<router-outlet></router-outlet>
+
+
 
 <!-- table -->
-<div >     
-<table *ngIf="isPurshased" class="table">
+<div>
+  <table *ngIf="isPurshased" class="table">
     <thead>
       <tr>
         <th scope="col">id</th>
@@ -59,7 +66,7 @@
         <td>{{product?.Name}}</td>
         <td>{{product.Quantity}}</td>
         <td>{{product.Price}}</td>
-        <td id="last-td"><img id="imgofproduct"  src="{{product.Img}}" alt=""></td>
+        <td id="last-td"><img id="imgofproduct" src="{{product.Img}}" alt=""></td>
       </tr>
     </tbody>
   </table>
@@ -74,5 +81,5 @@
 <br>
 
 <div *ngIf="isPurshased" #txt>
-    Thanks for purchasing from our Store  {{clientName}} 
+  Thanks for purchasing from our Store {{clientName}}
 </div>

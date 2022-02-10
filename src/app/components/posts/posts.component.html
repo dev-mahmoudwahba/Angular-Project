@@ -1,6 +1,6 @@
 <p>hello posts </p>
 <div class="cardme">  
-    <div *ngFor="let item of postsData" class="card " style="width: 18rem;">
+    <div *ngFor="let item of postsData"  (click)="goToCommentNum(item)" [class.selected]="isSelected(item)"  class="card  " style="width: 18rem;">
       <div class="card-header">
       </div>
       <ul class="list-group list-group-flush">

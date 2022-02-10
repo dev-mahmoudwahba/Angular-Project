@@ -3,6 +3,7 @@ import { IProduct } from '../../Shared Classes and types/interfaces/IProduct';
 import { ICategory } from '../../Shared Classes and types/interfaces/ICategory';
 import { DiscountOffers } from '../../Shared Classes and types/enums/DiscountOffers';
 import { ProductServiceService } from 'src/app/Services/product-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -23,7 +24,7 @@ export class ProductsComponent implements OnInit {
     this.isPurshased=!this.isPurshased;
    }
    
-  constructor(private proService:ProductServiceService) {
+  constructor(private proService:ProductServiceService,private router:Router,private activatedroute:ActivatedRoute) {
     this.discount = DiscountOffers.middiscount
     this.storeName = "Eldawlya Store"
     this.storeLogo = "../../../assets/icons/2.png"
@@ -61,4 +62,14 @@ renderValues():any{
   displayData(){
     this.child.renderValues();
   }
+
+  goToDicountComponent(){
+    this.router.navigate(["withdiscount"],{relativeTo:this.activatedroute})
+  }
+
+  goToWithoutDicountComponent(){
+    this.router.navigate(["withoutdiscount"],{relativeTo:this.activatedroute})
+  }
+
+
 }

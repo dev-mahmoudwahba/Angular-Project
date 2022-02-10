@@ -11,7 +11,12 @@ import{HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { PostsComponent } from './components/posts/posts.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { WithDiscountComponent } from './components/with-discount/with-discount.component';
+import { WithoutDiscountComponent } from './components/without-discount/without-discount.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CommentComponent } from './components/comment/comment.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +26,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HomeComponent,
     UsersComponent,
     PostsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    WithDiscountComponent,
+    WithoutDiscountComponent,
+    LoginComponent,
+    RegisterComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
