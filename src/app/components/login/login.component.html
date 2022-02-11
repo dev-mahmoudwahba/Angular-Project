@@ -1,27 +1,43 @@
-<form>
+<form #LoginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
     <div class="container">
-
-
+        {{ LoginForm.value | json }}
+        <br />
+        <br />
+        {{logUser | json }}
         <div class="row mb-3">
+
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3">
+                <input required name="txtemail" [(ngModel)]="logUser.email" #email="ngModel"
+                    [class.is-invalid]="email.invalid && email.touched"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" class="form-control"
+                    id="inputEmail3">
             </div>
         </div>
-
-        
-    <div class="row mb-3">
-        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3">
+        <div *ngIf="email.errors && (email.touched || email.dirty)" class="alert alert-danger">
+            <div [hidden]="!email.errors?.['pattern']">Invalid email</div>
         </div>
+
+        <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input required name="txtpassword" [(ngModel)]="logUser.pass" #pass="ngModel"
+                    [class.is-invalid]="pass.invalid && pass.touched"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}" type="password" class="form-control"
+                    id="inputPassword3">
+            </div>
+        </div>
+       
+
+        <div
+        *ngIf="pass.errors && (pass.touched || pass.dirty)"
+        class="alert alert-danger"
+      >
+        <div [hidden]="!pass.errors?.['pattern']">Invalid Pattern...</div>
       </div>
 
 
-
-      
-    
-      <button type="submit" class="btn btn-primary">Login </button>
+        <button type="submit" class="btn btn-primary">Login </button>
     </div>
 
 </form>

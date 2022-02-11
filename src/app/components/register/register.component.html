@@ -1,47 +1,81 @@
-<form>
-    <div class="container">
 
-        <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">User name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="input">
-            </div>
-        </div>
+<form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  {{userForm.value | json}}
+  <br> <br>
+  <!-- my -->
+  {{userModel | json}}
+  <div class="container">
 
-        <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3">
-            </div>
-        </div>
-
-        
     <div class="row mb-3">
-        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3">
-        </div>
+      <label for="inputEmail3" class="col-sm-2 col-form-label">User name</label>
+      <div class="col-sm-10">
+        <input type="text" [class.is-invalid]="name.invalid &&name.touched" #name="ngModel" name="txtName"
+          [(ngModel)]="userModel.name" required class="form-control" id="input" pattern="^(?=.*[a-z])(?=.*[A-Z]).+$">
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Username must contains only capital and
+          small characters</small>
       </div>
-
-
-      <div class="row mb-3">
-        <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3">
-        </div>
-      </div>
-
-      <div class="dropdown mx-auto" style="width: 50%" >
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            where you hear about us as?        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">facebook </a></li>
-          <li><a class="dropdown-item" href="#">twitter </a></li>
-          <li><a class="dropdown-item" href="#">google</a></li>
-        </ul>
-      </div>
-    
-      <button type="submit" class="btn btn-primary">Register </button>
     </div>
+
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" [class.is-invalid]="email.invalid &&email.touched" #email="ngModel" name="txtEmail"
+          [(ngModel)]="userModel.email" required class="form-control" id="inputEmail3"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+
+          >
+        <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required & email inoput must contains @ and in the format (aaa@bb.com)</small>
+
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" #password="ngModel" name="txtPassword" [(ngModel)]="userModel.password" required
+          class="form-control" id="">
+        <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</small>
+
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm password</label>
+      <div class="col-sm-10">
+        <input type="password" #repassword="ngModel" name="txtrePassword" [(ngModel)]="userModel.repPassword" required
+          class="form-control" id="">
+        <small class="text-danger" [class.d-none]="repassword.valid || repassword.untouched">repeat password is
+          required</small>
+
+      </div>
+    </div>
+
+
+
+    <div class="form-group dropdown mx-auto "  style="width: 50%">
+      <select class="custom-select" #ddl="ngModel" name="ddlHear" required [(ngModel)]="userModel.social">
+        <option>
+          where you hear about us as?
+        </option>
+
+        <option>
+          facebook
+        </option>
+
+        <option>
+          twitter
+        </option>
+        <option>
+          google
+        </option>
+      </select>
+      <small class="text-danger" [class.d-none]="ddl.valid || ddl.touched || ddl.dirty">drop list is required</small>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register </button>
+  </div>
 
 </form>
