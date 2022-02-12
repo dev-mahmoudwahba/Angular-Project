@@ -1,8 +1,101 @@
+<form [formGroup]="registerationForm">
+  <br> <br>
 
-<form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="container">
+
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">User name</label>
+      <div class="col-sm-10">
+        <input formControlName="userName" type="text" required class="form-control">
+
+        <div *ngIf="userName?.invalid && userName?.touched">
+          <small class="text-danger" *ngIf=" userName?.errors?.['required']"
+            >User name is required...</small
+          >
+          <small class="text-danger" *ngIf=" userName?.errors?.['minlength']"
+            >User name must be at least 5 characters...</small
+          >
+          <small
+            class="text-danger"
+            *ngIf=" userName?.errors?.['forbiddenName']"
+            >{{ userName?.errors?.['forbiddenName'].value }} is not allowed...
+          </small>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" formControlName="email" required class="form-control">
+        
+
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" formControlName="password" required class="form-control">
+
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm password</label>
+      <div class="col-sm-10">
+        <input type="password" formControlName="confirmPassword" required class="form-control" [class.is-invalid]="userName?.invalid && userName?.touched">
+      </div>
+      <small class="text-danger" *ngIf="registerationForm.errors?.['misMatch']">Password and Confirm Password is not
+        match.</small>
+    </div>
+
+
+
+    <div class="form-group dropdown mx-auto " style="width: 50%">
+      <select class="custom-select" formControlName="ddl">
+        <option> where you hear about us as? </option>
+        <option>facebook </option>
+        <option>twitter </option>
+        <option> google</option>
+      </select>
+      <!-- <small class="text-danger" [class.d-none]="ddl.valid || ddl.touched || ddl.dirty">drop list is required</small> -->
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register </button>
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
   {{userForm.value | json}}
   <br> <br>
-  <!-- my -->
+  
   {{userModel | json}}
   <div class="container">
 
@@ -77,5 +170,5 @@
 
     <button type="submit" class="btn btn-primary">Register </button>
   </div>
-
 </form>
+ -->
